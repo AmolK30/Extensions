@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tab QR Code</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="card">
+    <header class="header">
+      <div class="brand">
+        <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+        <h1 class="title">Tab QR Code</h1>
+      </div>
+    </header>
+
+    <main class="content">
+      <!-- Designated QR code rendering container -->
+      <div class="qr-wrapper">
+        <div id="qrcode" class="qr-box" aria-label="Generated QR Code"></div>
+        <div id="loading" class="loading-state">
+          <div class="spinner"></div>
+          <p>Generating QR code...</p>
+        </div>
+      </div>
+
+      <!-- Truncated active URL display -->
+      <div id="url-container" class="url-container">
+        <span id="tab-url" class="tab-url" title="">Detecting active tab...</span>
+      </div>
+
+      <!-- Error message container (hidden by default) -->
+      <div id="error-message" class="error-state hidden">
+        <svg class="error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="12" y1="8" x2="12" y2="12"></line>
+          <line x1="12" y1="16" x2="12.01" y2="16"></line>
+        </svg>
+        <span id="error-text">Unable to load tab URL</span>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="actions">
+        <button id="copy-btn" class="btn btn-secondary" title="Copy URL to clipboard" type="button">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span id="copy-btn-text">Copy URL</span>
+        </button>
+        <button id="download-btn" class="btn btn-primary" title="Download QR Code image" type="button">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          <span>Download</span>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Local QR code library (no external CDN, fully CSP compliant) -->
+  <script src="qrcode.min.js"></script>
+  <!-- Extension logic -->
+  <script src="popup.js"></script>
+</body>
+</html>
